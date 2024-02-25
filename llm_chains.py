@@ -13,9 +13,11 @@ with open("config.yml", "r") as f:
 
 
 def create_llm(
-    model_path=config["model_path"]["large"], model_type=config["model_type"]
+    model_path=config["model_path"]["large"],
+    model_type=config["model_type"],
+    model_config=config["model_config"],
 ):
-    llm = CTransformers(model_path, model_type)
+    llm = CTransformers(model=model_path, model_type=model_type, config=model_config)
     return llm
 
 
@@ -34,7 +36,7 @@ def create_prompt_from_template(template):
 
 
 def create_llm_chain(llm, chat_prompt, memory):
-    return LLMChain(llm, chat_prompt, memory)
+    return LLMChain(llm=llm, prompt=chat_prompt, memory=memory)
 
 
 def load_normal_chain(chat_history):
@@ -42,14 +44,9 @@ def load_normal_chain(chat_history):
 
 
 class chatChain:
-    def _init_(
-        self,
-        chat_history,
-        model_path=config["model_path"]["large"],
-        model_type=config["model_type"],
-    ):
+    def _init_(self, chat_history):
         self.memory = create_chat_memory(chat_history)
-        llm = create_llm(model_path, model_type)
+        llm = create_llm()
         chat_prompt = create_prompt_from_template(memory_prompt_template)
         self.llm_chain = create_llm_chain(llm, chat_prompt, self.memory)
 
