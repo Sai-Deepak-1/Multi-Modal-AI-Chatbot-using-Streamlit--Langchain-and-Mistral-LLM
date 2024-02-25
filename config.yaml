@@ -1,0 +1,8 @@
+model path:
+  # Change the model path here to use your own model.
+  small: "./models/mistral-7b-instruct-v0.1.03_K_M.gguf"
+  large: "models/mistral-7b-instruct-v0.1.Q5_K_M.gguf"
+
+model_type: "mistral"
+
+embeddings_path: "BAAI/bge-large-en-v1.5"
