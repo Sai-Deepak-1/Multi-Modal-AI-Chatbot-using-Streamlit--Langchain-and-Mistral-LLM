@@ -1,15 +1,15 @@
 from prompt_templates import memory_prompt_template
 from langchain.chains import StuffDocumentsChain, LLMChain, ConversationalRetrievalChain
-from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 from langchain.memory import ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
-from langchain.llms import CTransformers
-from langchain.vectorstores import Chroma
+from langchain_community.llms import CTransformers
+from langchain_community.vectorstores import Chroma
 import chromadb
 import yaml
 
-with open("config.yml", "r") as f:
-    config = yaml.load(f)
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
 
 
 def create_llm(
@@ -44,7 +44,7 @@ def load_normal_chain(chat_history):
 
 
 class chatChain:
-    def _init_(self, chat_history):
+    def __init__(self, chat_history):
         self.memory = create_chat_memory(chat_history)
         llm = create_llm()
         chat_prompt = create_prompt_from_template(memory_prompt_template)
