@@ -1,6 +1,6 @@
 # Multi-Modal AI Chatbot with Streamlit, LangChain, and Mistral LLM
 
-Welcome to the Multi-Modal AI Chatbot project! This innovative chatbot is designed to understand and interact with users through text, voice, and image inputs. By leveraging cutting-edge technologies, our chatbot provides a versatile and engaging user experience. Here's an overview of the technologies used:
+Welcome to the Multi-Modal AI Chatbot project! This innovative chatbot is designed to understand and interact with users through text, voice, and image inputs. By leveraging the features of LLM's and Langchain, our chatbot provides a versatile and engaging user experience. Here's an overview of the technologies used:
 
 - **Streamlit**: A powerful framework for building interactive and web-based data applications quickly and with minimal effort. Learn more at [Streamlit's official website](https://www.streamlit.io/).
 
@@ -16,11 +16,13 @@ The aim of this project is to demonstrate the capabilities of integrating Stream
 
 To get started with this project, ensure you have Python installed on your system. You'll need to install the necessary libraries, including Streamlit, LangChain, and the specific packages required for Mistral LLM integration.
 
+### Install Streamlit
 ```bash
-# Install Streamlit
 pip install streamlit
+```
 
-# Install LangChain
+### Install LangChain
+```bash
 pip install langchain
 ```
 
