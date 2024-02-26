@@ -15,7 +15,7 @@ def load_chat_history_json(file_path):
         messages = [
             (
                 HumanMessage(**message)
-                if message["type"] == "Human"
+                if message["type"] == "human"
                 else AIMessage(**message)
             )
             for message in json_data
