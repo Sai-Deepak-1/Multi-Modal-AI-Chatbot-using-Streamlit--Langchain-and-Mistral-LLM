@@ -3,7 +3,7 @@ from llm_chains import load_normal_chain
 from langchain.memory import StreamlitChatMessageHistory
 import yaml
 import os
-from utils import save_chat_history_json
+from utils import save_chat_history_json, get_timestamp, load_chat_history_json
 
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -20,10 +20,9 @@ def clear_input_field():
 
 def save_chat_history():
     if st.session_state.history != []:
-        save_chat_history_json(
-            st.session_state.history, config["chat_history_path"] + "random" + ". json"
-        )
-        # save_chat_history_json(st.session_state.historyl, config["chat_history_path"] + st.session_state.session_key + ". json")
+        if st.session_state.session_key == "new_session":
+            st.session_state.new_session_key = get_timestamp()
+            save_chat_history_json(st.session_state.history, config["chat_history_path"] + st.session_state.new_session_key + ".json")
 
 
 def set_send_input():
