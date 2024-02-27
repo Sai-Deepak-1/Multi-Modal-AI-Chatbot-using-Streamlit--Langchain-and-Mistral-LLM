@@ -2,6 +2,7 @@ import streamlit as st
 from llm_chains import load_normal_chain
 from langchain.memory import StreamlitChatMessageHistory
 from streamlit_mic_recorder import mic_recorder
+from audio_handler import transcribe_audio
 import yaml
 import os
 from utils import save_chat_history_json, get_timestamp, load_chat_history_json
@@ -87,11 +88,21 @@ def main():
             start_prompt="Start Recording", stop_prompt="Stop Recording"
         )
     with send_button_column:
-        send_button = st.button("Send", key="send_button")
+        send_button = st.button("Send", key="send_button", on_click=clear_input_field)
 
-        
-    print(voice_recording)
+    uploaded_audio = st.sidebar.file_uploader(
+        "Upload Audio Files Here", type=["wav", "mp3", "ogg"]
+    )
 
+    if uploaded_audio:
+        transcribed_audio = transcribe_audio(uploaded_audio.getvalue())
+        print(transcribed_audio)
+        llm_chain.run("Summarize This Text : " + transcribed_audio)
+
+    if voice_recording:
+        transcribed_audio = transcribe_audio(voice_recording["bytes"])
+        print(transcribed_audio)
+        llm_chain.run(transcribed_audio)
 
     if send_button or st.session_state.send_input:
         if st.session_state.user_question != "":
