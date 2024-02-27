@@ -1,6 +1,7 @@
 import streamlit as st
 from llm_chains import load_normal_chain
 from langchain.memory import StreamlitChatMessageHistory
+from streamlit_mic_recorder import mic_recorder
 import yaml
 import os
 from utils import save_chat_history_json, get_timestamp, load_chat_history_json
@@ -78,9 +79,19 @@ def main():
     llm_chain = load_chain(chat_history)
 
     user_input = st.text_input(
-        "Type your message here", key="user_input", on_change=set_send_input
+        "Enter your message here", key="user_input", on_change=set_send_input
     )
-    send_button = st.button("Send", key="send_button")
+    voice_recording_column, send_button_column = st.columns(2)
+    with voice_recording_column:
+        voice_recording = mic_recorder(
+            start_prompt="Start Recording", stop_prompt="Stop Recording"
+        )
+    with send_button_column:
+        send_button = st.button("Send", key="send_button")
+
+        
+    print(voice_recording)
+
 
     if send_button or st.session_state.send_input:
         if st.session_state.user_question != "":
