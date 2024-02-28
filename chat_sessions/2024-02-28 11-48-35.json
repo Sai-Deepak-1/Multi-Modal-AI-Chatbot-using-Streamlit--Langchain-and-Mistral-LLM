@@ -1,0 +1,44 @@
+[
+    {
+        "content": "Hi what can You do",
+        "additional_kwargs": {},
+        "type": "human",
+        "name": null,
+        "example": false
+    },
+    {
+        "content": "Hello! I'm an artificial intelligence designed to assist and communicate with you. I can answer questions, provide information on various topics, help manage schedules, set reminders, and much more. How may I be of service to you today?",
+        "additional_kwargs": {},
+        "type": "ai",
+        "name": null,
+        "example": false
+    },
+    {
+        "content": "",
+        "additional_kwargs": {},
+        "type": "human",
+        "name": null,
+        "example": false
+    },
+    {
+        "content": "I'm here to help answer any questions you have or provide information on a topic you're interested in. For example, I can help with math problems, explain scientific concepts, give directions, and more. What specifically would you like to know?\n\n",
+        "additional_kwargs": {},
+        "type": "ai",
+        "name": null,
+        "example": false
+    },
+    {
+        "content": "What is the capital of India",
+        "additional_kwargs": {},
+        "type": "human",
+        "name": null,
+        "example": false
+    },
+    {
+        "content": "The capital city of India is New Delhi. It is a city that holds great historical significance and serves as the political and administrative heart of India. The National Capital Territory of Delhi, which includes New Delhi, was established in 1956 as a union territory of India. Today, it is one of 28 states and eight union territories in the country.\n\nNew Delhi is known for its rich history, diverse culture, and numerous tourist attractions such as the Red Fort, Qutub Minar, Humayun's Tomb, and many more. It is also home to several important institutions like the Rashtrapati Bhavan (the official residence of the President of India), Parliament House, and the Supreme Court of India.\n\nIf you have any other questions or need further information on this topic or anything else, feel free to ask!",
+        "additional_kwargs": {},
+        "type": "ai",
+        "name": null,
+        "example": false
+    }
+]
