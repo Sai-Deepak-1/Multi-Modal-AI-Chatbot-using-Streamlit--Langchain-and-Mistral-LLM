@@ -13,4 +13,4 @@ model_config:
   "context_length": 4096
   "gpu_layers": 0
 
-chat_history_path: "C:\\Users\\Sai Deepak\\Desktop\\Multi_Modal_Chatbot\\chat_sessions\\"
+chat_history_path: "./chat_sessions/"
