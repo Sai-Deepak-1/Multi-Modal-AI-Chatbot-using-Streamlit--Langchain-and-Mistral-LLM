@@ -4,6 +4,7 @@ from langchain.memory import StreamlitChatMessageHistory
 from streamlit_mic_recorder import mic_recorder
 from audio_handler import transcribe_audio
 from image_handler import handle_image
+from image_handler import handle_image
 import yaml
 import os
 from utils import save_chat_history_json, get_timestamp, load_chat_history_json
@@ -97,6 +98,9 @@ def main():
     uploaded_image = st.sidebar.file_uploader(
         "Upload Image Files Here", type=["png", "jpg", "jpeg"]
     )
+    uploaded_image = st.sidebar.file_uploader(
+        "Upload Image Files Here", type=["png", "jpg", "jpeg"]
+    )
 
     if uploaded_audio:
         transcribed_audio = transcribe_audio(uploaded_audio.getvalue())
@@ -124,6 +128,15 @@ def main():
             with chat_container:
                 llm_response = llm_chain.run(st.session_state.user_question)
                 st.session_state.user_question = ""
+            if uploaded_image:
+                with st.spinner("Processing image ... ") :
+                    user_message = "Describe this image in detail please."
+                    if st.session_state.user_question != "":
+                        user_message = st.session_state.user_question
+                        st.session_state.user_question = ""
+                llm_answer = handle_image(uploaded_image.getvalue(), st.session_state.user_question)
+                chat_history.add_user_message(user_message)
+                chat_history.add_ai_message(llm_answer)
 
     if chat_history.messages != []:
         with chat_container:
